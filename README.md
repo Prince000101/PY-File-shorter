@@ -2,9 +2,6 @@
 
 A Python-based file sorting script with a GUI using Tkinter. It organizes files in a selected directory into categorized folders such as **Images, Videos, Documents, Music, Archives, Executables, and Code**. It also supports **undoing** the sorting process.
 
-![Unsorted](unshorted.png)  
-*Example of an unsorted directory.*
-
 ## 🚀 Features
 - Automatically sorts files into appropriate folders.
 - Supports undo functionality to restore files to their original locations.
