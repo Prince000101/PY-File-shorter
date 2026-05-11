@@ -1,0 +1,11 @@
+@media (max-width: 768px) {
+    .register-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .register-header {
+        font-size: var(--font-size-lg);
+        padding: var(--spacing-sm);
+    }
+}
