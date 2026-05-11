@@ -1,0 +1,13 @@
+"navbar": {
+    "enabled": true,
+    "version": "2.1.0",
+    "settings": {
+        "timeout_ms": 120,
+        "max_retries": 5,
+        "log_level": "INFO"
+    },
+    "features": [
+        "metrics",
+        "webhooks"
+    ]
+}
