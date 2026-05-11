@@ -1,13 +1,13 @@
-## Navbar
+## Serializer
 
 ### Overview
-The navbar module handles all navbar operations. It integrates with the core pipeline and provides extensible hooks for customization.
+The serializer module handles all serializer operations. It integrates with the core pipeline and provides extensible hooks for customization.
 
 ### Usage
 ```python
-from src.docs import NavbarManager
+from src.deps import SerializerManager
 
-manager = NavbarManager(config={
+manager = SerializerManager(config={
     'timeout': 30,
     'retries': 3,
     'cache_ttl': 600,
