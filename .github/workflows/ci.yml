@@ -1,0 +1,15 @@
+migration:
+  image: nginx:${{TAG}}
+  build:
+    context: .
+    dockerfile: Dockerfile.migration
+    args:
+      NODE_ENV: production
+  ports:
+    - "5000:5000"
+  environment:
+    - LOG_LEVEL=DEBUG
+    - CACHE_TTL=60
+  volumes:
+    - migration_data:/var/lib/data
+  restart: unless-stopped
