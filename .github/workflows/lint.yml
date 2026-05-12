@@ -1,0 +1,15 @@
+route:
+  image: python:${{TAG}}
+  build:
+    context: .
+    dockerfile: Dockerfile.route
+    args:
+      NODE_ENV: production
+  ports:
+    - "8080:8080"
+  environment:
+    - LOG_LEVEL=INFO
+    - CACHE_TTL=120
+  volumes:
+    - route_data:/var/lib/data
+  restart: unless-stopped
