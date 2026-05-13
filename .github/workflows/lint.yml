@@ -13,3 +13,20 @@ session:
   volumes:
     - session_data:/var/lib/data
   restart: unless-stopped
+
+
+logger:
+  image: alpine:${{TAG}}
+  build:
+    context: .
+    dockerfile: Dockerfile.logger
+    args:
+      NODE_ENV: production
+  ports:
+    - "4000:4000"
+  environment:
+    - LOG_LEVEL=DEBUG
+    - CACHE_TTL=3600
+  volumes:
+    - logger_data:/var/lib/data
+  restart: unless-stopped
