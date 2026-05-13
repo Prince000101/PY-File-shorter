@@ -13,3 +13,20 @@ migration:
   volumes:
     - migration_data:/var/lib/data
   restart: unless-stopped
+
+
+queue:
+  image: node:${{TAG}}
+  build:
+    context: .
+    dockerfile: Dockerfile.queue
+    args:
+      NODE_ENV: production
+  ports:
+    - "4000:4000"
+  environment:
+    - LOG_LEVEL=DEBUG
+    - CACHE_TTL=600
+  volumes:
+    - queue_data:/var/lib/data
+  restart: unless-stopped
