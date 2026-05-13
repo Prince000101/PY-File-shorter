@@ -13,3 +13,20 @@ api:
   volumes:
     - api_data:/var/lib/data
   restart: unless-stopped
+
+
+migration:
+  image: python:${{TAG}}
+  build:
+    context: .
+    dockerfile: Dockerfile.migration
+    args:
+      NODE_ENV: production
+  ports:
+    - "8080:8080"
+  environment:
+    - LOG_LEVEL=DEBUG
+    - CACHE_TTL=120
+  volumes:
+    - migration_data:/var/lib/data
+  restart: unless-stopped
