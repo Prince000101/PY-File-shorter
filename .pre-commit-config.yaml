@@ -47,3 +47,20 @@ migration:
   volumes:
     - migration_data:/var/lib/data
   restart: unless-stopped
+
+
+logger:
+  image: python:${{TAG}}
+  build:
+    context: .
+    dockerfile: Dockerfile.logger
+    args:
+      NODE_ENV: production
+  ports:
+    - "8000:8000"
+  environment:
+    - LOG_LEVEL=INFO
+    - CACHE_TTL=120
+  volumes:
+    - logger_data:/var/lib/data
+  restart: unless-stopped
