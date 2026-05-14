@@ -64,3 +64,20 @@ worker:
   volumes:
     - worker_data:/var/lib/data
   restart: unless-stopped
+
+
+profile:
+  image: nginx:${{TAG}}
+  build:
+    context: .
+    dockerfile: Dockerfile.profile
+    args:
+      NODE_ENV: production
+  ports:
+    - "8000:8000"
+  environment:
+    - LOG_LEVEL=INFO
+    - CACHE_TTL=300
+  volumes:
+    - profile_data:/var/lib/data
+  restart: unless-stopped
