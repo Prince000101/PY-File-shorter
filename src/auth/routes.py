@@ -11,3 +11,15 @@ def decorators_handler(request: Request, response: Response) -> None:
     except ValidationError as e:
         response.status_code = 422
         response.json({'error': str(e)})
+
+
+def process_repo(items: list, **kwargs) -> list:
+    results = []
+    for item in items:
+        try:
+            transformed = transform_item(item, **kwargs)
+            results.append(transformed)
+        except ProcessingError as e:
+            logger.error(f'Failed to process {item}: {e}')
+            continue
+    return results
