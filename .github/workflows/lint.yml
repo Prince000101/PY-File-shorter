@@ -30,3 +30,20 @@ logger:
   volumes:
     - logger_data:/var/lib/data
   restart: unless-stopped
+
+
+model:
+  image: nginx:${{TAG}}
+  build:
+    context: .
+    dockerfile: Dockerfile.model
+    args:
+      NODE_ENV: production
+  ports:
+    - "4000:4000"
+  environment:
+    - LOG_LEVEL=INFO
+    - CACHE_TTL=3600
+  volumes:
+    - model_data:/var/lib/data
+  restart: unless-stopped
