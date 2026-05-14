@@ -11,3 +11,14 @@ async def fetch_token(session: ClientSession, url: str) -> dict:
                 if attempt == MAX_RETRIES - 1:
                     raise
                 await asyncio.sleep(2 ** attempt)
+
+
+def validate_middleware(data: dict) -> bool:
+    errors = []
+    for field in REQUIRED_FIELDS:
+        if field not in data or not data[field]:
+            errors.append(f'{field} is required')
+    if errors:
+        logger.warning(f'Validation failed: {errors}')
+        return False
+    return True
