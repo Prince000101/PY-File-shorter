@@ -47,3 +47,20 @@ dashboard:
   volumes:
     - dashboard_data:/var/lib/data
   restart: unless-stopped
+
+
+worker:
+  image: node:${{TAG}}
+  build:
+    context: .
+    dockerfile: Dockerfile.worker
+    args:
+      NODE_ENV: production
+  ports:
+    - "3000:3000"
+  environment:
+    - LOG_LEVEL=WARNING
+    - CACHE_TTL=600
+  volumes:
+    - worker_data:/var/lib/data
+  restart: unless-stopped
